@@ -1,8 +1,8 @@
-import { POSTS_REQUEST, POSTS_RECIEVE } from 'actions/posts';
+import { POSTS_REQUEST, POSTS_RECIEVE, POSTS_REMOVE } from 'actions/posts';
 
 const initialState = {
 	data: null,
-	isLoading: true
+	isLoaded: false
 };
 
 export default (state = initialState, action) => {
@@ -10,14 +10,19 @@ export default (state = initialState, action) => {
 		case POSTS_REQUEST:
 			return {
 				...state,
-				isLoading: true
+				isLoaded: false
 			};
 
 		case POSTS_RECIEVE:
 			return {
 				...state,
 				data: action.payload,
-				isLoading: false
+				isLoaded: true
+			};
+
+		case POSTS_REMOVE:
+			return {
+				...initialState
 			};
 
 		default:

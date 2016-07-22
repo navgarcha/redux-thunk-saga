@@ -1,6 +1,6 @@
 import { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { fetchPosts } from 'actions/posts';
+import { fetchPosts, removePosts } from 'actions/posts';
 import { fetchComponentData } from 'utils';
 
 class Posts extends Component {
@@ -13,16 +13,22 @@ class Posts extends Component {
 	]
 
 	componentDidMount() {
-		fetchComponentData(Posts.need, this.props.dispatch);
+		if (!this.props.posts.isLoaded) {
+			fetchComponentData(Posts.need, this.props.dispatch);
+		}
+	}
+
+	componentWillUnmount() {
+		this.props.dispatch(removePosts());
 	}
 
 	render() {
-		const { data, isLoading } = this.props.posts;
+		const { data, isLoaded } = this.props.posts;
 
 		return (
 			<div>
 				This is the posts page!
-				<pre style={{whiteSpace: 'normal'}}>{isLoading ? 'Loading...' : JSON.stringify(data)}</pre>
+				<pre style={{whiteSpace: 'normal'}}>{isLoaded ? JSON.stringify(data) : 'Loading...'}</pre>
 			</div>
 		);
 	}

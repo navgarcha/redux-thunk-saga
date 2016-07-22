@@ -1,6 +1,6 @@
 import { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { requestAlbums } from 'actions/albums';
+import { requestAlbums, removeAlbums } from 'actions/albums';
 import { fetchComponentData } from 'utils';
 
 class Albums extends Component {
@@ -13,16 +13,22 @@ class Albums extends Component {
 	]
 
 	componentDidMount() {
-		fetchComponentData(Albums.need, this.props.dispatch);
+		if (!this.props.albums.isLoaded) {
+			fetchComponentData(Albums.need, this.props.dispatch);
+		}
+	}
+
+	componentWillUnmount() {
+		this.props.dispatch(removeAlbums());
 	}
 
 	render() {
-		const { data, isLoading } = this.props.albums;
+		const { data, isLoaded } = this.props.albums;
 
 		return (
 			<div>
 				This is the albums page!
-				<pre style={{whiteSpace: 'normal'}}>{isLoading ? 'Loading...' : JSON.stringify(data)}</pre>
+				<pre style={{whiteSpace: 'normal'}}>{isLoaded ? JSON.stringify(data) : 'Loading...'}</pre>
 			</div>
 		);
 	}

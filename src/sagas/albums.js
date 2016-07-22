@@ -1,12 +1,28 @@
-import { delay } from 'redux-saga';
-import { call, put } from 'redux-saga/effects';
+import { takeLatest, takeEvery, delay } from 'redux-saga';
+import { take, race, call, put } from 'redux-saga/effects';
 import { fetch } from 'api';
-import { receiveAlbums } from 'actions/albums';
+import { ALBUMS_REQUEST, ALBUMS_REMOVE, receiveAlbums } from 'actions/albums';
 
-export { ALBUMS_REQUEST } from 'actions/albums';
+function* fetchAlbums() {
+	// yield delay(1000);
 
-export function* fetchAlbums() {
-	yield delay(1000);
-	const albums = yield call(fetch, '/albums');
-	yield put(receiveAlbums(albums));
+	try {
+		const { albums, cancel } = yield race({
+			albums: call(fetch, '/albums'),
+			cancel: take(ALBUMS_REMOVE)
+		});
+
+		if (albums) {
+			yield put(receiveAlbums(albums));
+		} else if (cancel) {
+			console.log('Albums request cancelled!');
+		}
+	} catch (error) {
+		console.log('Album request failed!');
+	}
+}
+
+export function* watchFetchAlbums() {
+	yield* takeLatest(ALBUMS_REQUEST, fetchAlbums);
+	// yield* takeEvery(ALBUMS_REQUEST, fetchAlbums);
 }

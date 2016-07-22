@@ -1,8 +1,8 @@
-import { ALBUMS_REQUEST, ALBUMS_RECIEVE } from 'actions/albums';
+import { ALBUMS_REQUEST, ALBUMS_RECIEVE, ALBUMS_REMOVE } from 'actions/albums';
 
 const initialState = {
 	data: null,
-	isLoading: true
+	isLoaded: false
 };
 
 export default (state = initialState, action) => {
@@ -10,14 +10,19 @@ export default (state = initialState, action) => {
 		case ALBUMS_REQUEST:
 			return {
 				...state,
-				isLoading: true
+				isLoaded: false
 			};
 
 		case ALBUMS_RECIEVE:
 			return {
 				...state,
 				data: action.payload,
-				isLoading: false
+				isLoaded: true
+			};
+
+		case ALBUMS_REMOVE:
+			return {
+				...initialState
 			};
 
 		default:
