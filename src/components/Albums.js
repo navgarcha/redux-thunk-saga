@@ -1,6 +1,7 @@
 import { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { requestAlbums } from 'actions/albums';
+import { fetchComponentData } from 'utils';
 
 class Albums extends Component {
 	static propTypes = {
@@ -12,9 +13,7 @@ class Albums extends Component {
 	]
 
 	componentDidMount() {
-		if (!this.props.albums.data) {
-			Promise.all(Albums.need.map((need) => this.props.dispatch(need())));
-		}
+		fetchComponentData(Albums.need, this.props.dispatch);
 	}
 
 	render() {
