@@ -6,6 +6,6 @@
 * Development server `npm start`
 
 ## Useful resources
-https://yelouafi.github.io/redux-saga/index.html
-https://davidwalsh.name/es6-generators
-http://www.bennadel.com/blog/3123-using-es6-generators-and-yield-to-implement-asynchronous-workflows-in-javascript.htm
+[https://yelouafi.github.io/redux-saga/index.html](https://yelouafi.github.io/redux-saga/index.html)
+[https://davidwalsh.name/es6-generators])https://davidwalsh.name/es6-generators)
+[http://www.bennadel.com/blog/3123-using-es6-generators-and-yield-to-implement-asynchronous-workflows-in-javascript.htm](http://www.bennadel.com/blog/3123-using-es6-generators-and-yield-to-implement-asynchronous-workflows-in-javascript.htm)
