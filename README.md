@@ -13,4 +13,4 @@
 * http://www.bennadel.com/blog/3123-using-es6-generators-and-yield-to-implement-asynchronous-workflows-in-javascript.htm
 * http://stackoverflow.com/questions/34930735/pros-cons-of-using-redux-saga-with-es6-generators-vs-redux-thunk-with-es7-async
 
-**TL;DR;** Sagas appear to be better for defining control flows and for testability.
+**TL;DR;** Sagas appear to be better for defining control flows and for testability and leave our action creators pure!
