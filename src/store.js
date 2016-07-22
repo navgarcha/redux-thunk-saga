@@ -8,8 +8,8 @@ import rootSaga from './sagas';
 const sagaMiddleware = createSagaMiddleware();
 const middleware = [thunkMiddleware, sagaMiddleware];
 
-// Add logging on client
-if (typeof window !== 'undefined') {
+// Add logging for client
+if (typeof window !== 'undefined' && window.document) {
 	middleware.push(createLogger({collapsed: true}))
 }
 
