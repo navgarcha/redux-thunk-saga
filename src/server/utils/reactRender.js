@@ -1,13 +1,19 @@
 import { renderToString } from 'react-dom/server';
 import { match, RouterContext } from 'react-router';
 import { Provider } from 'react-redux';
+import { END } from 'redux-saga';
 import routes from '../../routes';
+import rootSaga from '../../sagas';
 import configureStore from '../../store';
 
 function fetchContextData(store = {}, { components = [] }) {
+	const rootTask = store.runSaga(rootSaga);
 	const promises = components.reduce((prev, current = {}) => {
 		return (current.need || []).concat(prev);
 	}, []).map((need) => store.dispatch(need()));
+
+	promises.push(rootTask.done);
+	store.dispatch(END);
 
 	return Promise.all(promises);
 }
