@@ -1,7 +1,6 @@
 import { renderToString } from 'react-dom/server';
 import { match, RouterContext } from 'react-router';
 import { Provider } from 'react-redux';
-import { END } from 'redux-saga';
 import routes from '../../routes';
 import rootSaga from '../../sagas';
 import configureStore from '../../store';
@@ -13,7 +12,7 @@ function fetchContextData(store = {}, { components = [] }) {
 	}, []).map((need) => store.dispatch(need()));
 
 	promises.push(rootTask.done);
-	store.dispatch(END);
+	store.close();
 
 	return Promise.all(promises);
 }
