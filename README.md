@@ -15,5 +15,6 @@
 ## Useful videos
 * https://www.youtube.com/watch?v=QJVdcIlqGwc
 * https://www.youtube.com/watch?v=H4I9EKGTvCE
+* https://www.youtube.com/watch?v=PnpfGy7q96U
 
 **TL;DR;** Sagas appear to be better for defining control flows and for testability and leave our action creators pure!
