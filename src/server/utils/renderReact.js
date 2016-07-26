@@ -5,7 +5,7 @@ import routes from '../../routes';
 import rootSaga from '../../sagas';
 import configureStore from '../../store';
 
-function fetchContextData(store = {}, { components = [] }) {
+function requestContextData(store = {}, { components = [] }) {
 	const promises = components.reduce((prev, current = {}) => {
 		return (current.need || []).concat(prev);
 	}, []).map((need) => store.dispatch(need()));
@@ -31,7 +31,7 @@ export default function(request, reply) {
 				</Provider>
 			);
 
-			fetchContextData(store, props).then(() => {
+			requestContextData(store, props).then(() => {
 				const html = renderToString(rootComponent);
 				const state = `window.__INITIAL_STATE__ = ${JSON.stringify(store.getState())};`;
 

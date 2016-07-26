@@ -1,4 +1,4 @@
-import { fetch } from 'api';
+import { request } from 'api';
 
 export const POSTS_RECIEVE = 'POSTS_RECIEVE';
 export const POSTS_CLEANUP = 'POSTS_CLEANUP';
@@ -12,7 +12,7 @@ function receivePosts(payload) {
 
 export function requestPosts() {
 	return (dispatch) => {
-		return fetch('/posts').then((posts) => dispatch(receivePosts(posts)));
+		return request('/posts').then((posts) => dispatch(receivePosts(posts)));
 	};
 }
 

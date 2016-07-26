@@ -1,16 +1,16 @@
 import { takeLatest } from 'redux-saga';
 import { take, race, call, put, select } from 'redux-saga/effects';
-import { fetch } from 'api';
+import { request } from 'api';
 import { PHOTOS_REQUEST, PHOTOS_CLEANUP, receivePhotos } from 'actions/photos';
 import { photosSelector } from 'selectors';
 
-function* fetchPhotos({ id }) {
+function* requestPhotos({ id }) {
 	const cachedPhotos = yield select(photosSelector, id);
 
 	if (!cachedPhotos) {
 		try {
 			const { photos, cancel } = yield race({
-				photos: call(fetch, `/photos?albumId=${id}`),
+				photos: call(request, `/photos?albumId=${id}`),
 				cancel: take(PHOTOS_CLEANUP)
 			});
 
@@ -27,6 +27,6 @@ function* fetchPhotos({ id }) {
 	}
 }
 
-export function* watchFetchPhotos() {
-	yield* takeLatest(PHOTOS_REQUEST, fetchPhotos);
+export function* watchRequestPhotos() {
+	yield* takeLatest(PHOTOS_REQUEST, requestPhotos);
 }

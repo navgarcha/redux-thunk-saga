@@ -1,10 +1,10 @@
 import { fork } from 'redux-saga/effects';
-import { watchFetchAlbums } from './albums';
-import { watchFetchPhotos } from './photos';
+import { watchRequestAlbums } from './albums';
+import { watchRequestPhotos } from './photos';
 
 export default function* root() {
 	yield [
-		fork(watchFetchAlbums),
-		fork(watchFetchPhotos)
+		fork(watchRequestAlbums),
+		fork(watchRequestPhotos)
 	];
 }
