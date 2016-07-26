@@ -11,7 +11,7 @@ function fetchContextData(store = {}, { components = [] }) {
 	}, []).map((need) => store.dispatch(need()));
 
 	// Ensure thunk promises AND saga tasks are resolved
-    promise.push(store.runSaga(rootSaga).done);
+    promises.push(store.runSaga(rootSaga).done);
 
 	return Promise.all(promises);
 }
