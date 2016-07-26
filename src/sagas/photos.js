@@ -22,6 +22,8 @@ function* fetchPhotos({ id }) {
 		} catch (error) {
 			console.log('Photos request failed!');
 		}
+	} else {
+		console.log('Photos served from cache!');
 	}
 }
 

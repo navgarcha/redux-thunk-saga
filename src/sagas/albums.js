@@ -12,8 +12,10 @@ function* fetchAlbums() {
 			const albums = yield call(fetch, '/albums');
 			yield put(receiveAlbums(albums));
 		} catch (error) {
-			console.log('Album request failed!');
+			console.log('Albums request failed!');
 		}
+	} else {
+		console.log('Albums served from cache!');
 	}
 }
 
