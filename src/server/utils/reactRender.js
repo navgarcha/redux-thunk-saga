@@ -37,6 +37,7 @@ export default function(request, reply) {
 			});
 
 			// Trigger sagas for component to run
+			// https://github.com/yelouafi/redux-saga/issues/255#issuecomment-210275959
 			renderToString(rootComponent);
 
 			// Dispatch a close event so sagas stop listening after they're resolved
