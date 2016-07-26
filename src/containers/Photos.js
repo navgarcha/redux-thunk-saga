@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { requestPhotos, removePhotos } from 'actions/photos';
-import { photosSelector } from 'reducers/selectors';
+import { photosSelector } from 'selectors';
 import Photos from 'components/Photos';
 
 const mapStateToProps = (state, ownProps) => ({
