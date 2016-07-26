@@ -10,8 +10,10 @@ function fetchContextData(store = {}, { components = [] }) {
 		return (current.need || []).concat(prev);
 	}, []).map((need) => store.dispatch(need()));
 
-	// Ensure thunk and saga promises are resolved before rendering response
-	return Promise.all([...promises, store.runSaga(rootSaga).done]);
+	// Ensure thunk promises AND saga tasks are resolved
+    promise.push(store.runSaga(rootSaga).done);
+
+	return Promise.all(promises);
 }
 
 export default function(request, reply) {
