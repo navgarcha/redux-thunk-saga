@@ -4,21 +4,21 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import CleanWebpackPlugin from 'clean-webpack-plugin';
 import cmrhConfig from '../cmrh.conf';
 
-const appPath = path.resolve(__dirname, '../src');
-const buildPath = path.resolve(__dirname, '../public/build');
+const buildFolder = 'build';
+const buildPath = path.resolve(__dirname, `../public/${buildFolder}`);
 
 export default {
 	entry: './src/client',
 
 	output: {
 		path: buildPath,
-		publicPath: '/build/',
+		publicPath: `/${buildFolder}/`,
 		filename: 'main.js',
 		chunkFilename: '[name].js'
 	},
 
 	resolve: {
-		root: appPath
+		root: path.resolve(__dirname, '../src')
 	},
 
 	module: {
