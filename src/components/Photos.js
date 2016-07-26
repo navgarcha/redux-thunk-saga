@@ -1,9 +1,6 @@
 import { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
-import { requestPhotos, removePhotos } from 'actions/photos';
-import { photosSelector } from 'reducers/selectors';
 
-class Photos extends Component {
+export default class Photos extends Component {
 	static propTypes = {
 		photos: PropTypes.arrayOf(PropTypes.shape({
 			id: PropTypes.number.isRequired,
@@ -31,12 +28,3 @@ class Photos extends Component {
 		);
 	}
 }
-
-const mapStateToProps = (state, ownProps) => ({
-	photos: photosSelector(state, ownProps.params.albumId)
-});
-
-export default connect(mapStateToProps, {
-	requestPhotos,
-	removePhotos
-})(Photos);

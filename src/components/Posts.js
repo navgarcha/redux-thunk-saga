@@ -1,8 +1,7 @@
 import { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
 import { requestPosts, removePosts } from 'actions/posts';
 
-class Posts extends Component {
+export default class Posts extends Component {
 	static propTypes = {
 		posts: PropTypes.array
 	}
@@ -33,7 +32,3 @@ class Posts extends Component {
 		);
 	}
 }
-
-const mapStateToProps = ({ posts }) => ({posts});
-
-export default connect(mapStateToProps)(Posts);
