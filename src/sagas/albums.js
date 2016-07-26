@@ -1,4 +1,4 @@
-import { takeLatest, takeEvery, delay } from 'redux-saga';
+import { takeLatest } from 'redux-saga';
 import { take, race, call, put, select } from 'redux-saga/effects';
 import { fetch } from 'api';
 import { ALBUMS_GET, ALBUMS_REMOVE, requestAlbums, receiveAlbums } from 'actions/albums';
