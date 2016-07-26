@@ -1,6 +1,6 @@
 import { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { fetchPosts, removePosts } from 'actions/posts';
+import { getPosts, removePosts } from 'actions/posts';
 
 class Posts extends Component {
 	static propTypes = {
@@ -8,7 +8,7 @@ class Posts extends Component {
 	}
 
 	static need = [
-		() => fetchPosts()
+		() => getPosts()
 	]
 
 	componentDidMount() {

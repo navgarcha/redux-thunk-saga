@@ -17,16 +17,15 @@ function receivePosts(payload) {
 	};
 }
 
-export function removePosts() {
-	return {
-		type: POSTS_REMOVE
-	};
-}
-
-
-export function fetchPosts() {
+export function getPosts() {
 	return (dispatch) => {
 		dispatch(requestPosts());
 		return fetch('/posts').then((users) => dispatch(receivePosts(users)));
+	};
+}
+
+export function removePosts() {
+	return {
+		type: POSTS_REMOVE
 	};
 }

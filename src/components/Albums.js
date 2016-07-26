@@ -1,24 +1,20 @@
 import { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { requestAlbums, removeAlbums } from 'actions/albums';
+import { getAlbums, removeAlbums } from 'actions/albums';
 
 class Albums extends Component {
 	static propTypes = {
-		albums: PropTypes.object.isRequired
+		albums: PropTypes.object.isRequired,
+		getAlbums: PropTypes.func.isRequired,
+		removeAlbums: PropTypes.func.isRequired
 	}
 
-	static need = [
-		() => requestAlbums()
-	]
-
-	componentDidMount() {
-		if (!this.props.albums.isLoaded) {
-			Albums.need.map((need) => this.props.dispatch(need()))
-		}
+	componentWillMount() {
+		this.props.getAlbums();
 	}
 
 	componentWillUnmount() {
-		this.props.dispatch(removeAlbums());
+		this.props.removeAlbums();
 	}
 
 	render() {
@@ -35,4 +31,7 @@ class Albums extends Component {
 
 const mapStateToProps = ({ albums }) => ({albums});
 
-export default connect(mapStateToProps)(Albums);
+export default connect(mapStateToProps, {
+	getAlbums,
+	removeAlbums
+})(Albums);

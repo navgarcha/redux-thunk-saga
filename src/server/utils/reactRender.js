@@ -6,15 +6,12 @@ import rootSaga from '../../sagas';
 import configureStore from '../../store';
 
 function fetchContextData(store = {}, { components = [] }) {
-	const rootTask = store.runSaga(rootSaga);
 	const promises = components.reduce((prev, current = {}) => {
 		return (current.need || []).concat(prev);
 	}, []).map((need) => store.dispatch(need()));
 
-	promises.push(rootTask.done);
-	store.close();
-
-	return Promise.all(promises);
+	// Ensure thunk and saga promises are resolved before rendering response
+	return Promise.all([...promises, store.runSaga(rootSaga).done]);
 }
 
 export default function(request, reply) {
@@ -26,17 +23,24 @@ export default function(request, reply) {
 		} else if (redirect) {
 			reply.redirect(redirect.pathname + redirect.search);
 		} else if (props) {
-			fetchContextData(store, props).then(() => {
-				const html = renderToString(
-					<Provider store={store}>
-						<RouterContext {...props} />
-					</Provider>
-				);
+			const rootComponent = (
+				<Provider store={store}>
+					<RouterContext {...props} />
+				</Provider>
+			);
 
+			store.runSaga(rootSaga).done.then(() => {
+				const html = renderToString(rootComponent);
 				const state = `window.__INITIAL_STATE__ = ${JSON.stringify(store.getState())};`;
 
 				reply.view('index', {html, state});
 			});
+
+			// Trigger sagas for component to run
+			renderToString(rootComponent);
+
+			// Dispatch a close event so sagas stop listening after they're resolved
+			store.close();
 		} else {
 			reply('Not Found').code(404);
 		}
