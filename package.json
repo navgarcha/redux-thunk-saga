@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "start": "babel-node index.js",
-    "build": "webpack -d --config ./webpack/webpack.config.js"
+    "build": "webpack -d --config ./webpack/webpack.config.babel.js"
   },
   "author": "Nav Garcha",
   "dependencies": {

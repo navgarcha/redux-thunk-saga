@@ -1,12 +1,13 @@
-const webpack = require('webpack');
-const path = require('path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
-const cmrhConfig = require('../cmrh.conf');
+import webpack from 'webpack';
+import path from 'path';
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import CleanWebpackPlugin from 'clean-webpack-plugin';
+import cmrhConfig from '../cmrh.conf';
+
 const appPath = path.resolve(__dirname, '../src');
 const buildPath = path.resolve(__dirname, '../public/build');
 
-module.exports = {
+export default {
 	entry: './src/client',
 
 	output: {
