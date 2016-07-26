@@ -2,7 +2,7 @@ import { takeLatest } from 'redux-saga';
 import { call, put, select } from 'redux-saga/effects';
 import { fetch } from 'api';
 import { ALBUMS_REQUEST, receiveAlbums } from 'actions/albums';
-import { albumsSelector } from 'reducers/selectors';
+import { albumsSelector } from 'selectors';
 
 function* fetchAlbums() {
 	const cachedAlbums = yield select(albumsSelector);

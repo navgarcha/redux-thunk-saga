@@ -2,7 +2,7 @@ import { takeLatest } from 'redux-saga';
 import { take, race, call, put, select } from 'redux-saga/effects';
 import { fetch } from 'api';
 import { PHOTOS_REQUEST, PHOTOS_REMOVE, receivePhotos } from 'actions/photos';
-import { photosSelector } from 'reducers/selectors';
+import { photosSelector } from 'selectors';
 
 function* fetchPhotos({ id }) {
 	const cachedPhotos = yield select(photosSelector, id);
