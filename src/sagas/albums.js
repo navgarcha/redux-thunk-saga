@@ -1,26 +1,16 @@
 import { takeLatest } from 'redux-saga';
-import { take, race, call, put, select } from 'redux-saga/effects';
+import { call, put, select } from 'redux-saga/effects';
 import { fetch } from 'api';
-import { ALBUMS_GET, ALBUMS_REMOVE, requestAlbums, receiveAlbums } from 'actions/albums';
-import { getAlbums } from 'reducers/selectors';
+import { ALBUMS_REQUEST, receiveAlbums } from 'actions/albums';
+import { albumsSelector } from 'reducers/selectors';
 
 function* fetchAlbums() {
-	const { isLoaded } = yield select(getAlbums);
+	const cachedAlbums = yield select(albumsSelector);
 
-	if (!isLoaded) {
-		yield put(requestAlbums());
-
+	if (!cachedAlbums) {
 		try {
-			const { albums, cancel } = yield race({
-				albums: call(fetch, '/albums'),
-				cancel: take(ALBUMS_REMOVE)
-			});
-
-			if (albums) {
-				yield put(receiveAlbums(albums));
-			} else if (cancel) {
-				console.log('Albums request cancelled!');
-			}
+			const albums = yield call(fetch, '/albums');
+			yield put(receiveAlbums(albums));
 		} catch (error) {
 			console.log('Album request failed!');
 		}
@@ -28,5 +18,5 @@ function* fetchAlbums() {
 }
 
 export function* watchFetchAlbums() {
-	yield* takeLatest(ALBUMS_GET, fetchAlbums);
+	yield* takeLatest(ALBUMS_REQUEST, fetchAlbums);
 }

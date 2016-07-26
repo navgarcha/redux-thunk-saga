@@ -29,7 +29,7 @@ export default function(request, reply) {
 				</Provider>
 			);
 
-			store.runSaga(rootSaga).done.then(() => {
+			fetchContextData(store, props).then(() => {
 				const html = renderToString(rootComponent);
 				const state = `window.__INITIAL_STATE__ = ${JSON.stringify(store.getState())};`;
 

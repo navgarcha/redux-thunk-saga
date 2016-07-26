@@ -1,29 +1,9 @@
-import { ALBUMS_REQUEST, ALBUMS_RECIEVE, ALBUMS_REMOVE } from 'actions/albums';
+import { ALBUMS_RECIEVE } from 'actions/albums';
 
-const initialState = {
-	data: null,
-	isLoaded: false
-};
-
-export default (state = initialState, action) => {
+export default (state = null, action) => {
 	switch (action.type) {
-		case ALBUMS_REQUEST:
-			return {
-				...state,
-				isLoaded: false
-			};
-
 		case ALBUMS_RECIEVE:
-			return {
-				...state,
-				data: action.payload,
-				isLoaded: true
-			};
-
-		case ALBUMS_REMOVE:
-			return {
-				...initialState
-			};
+			return action.payload;
 
 		default:
 			return state;

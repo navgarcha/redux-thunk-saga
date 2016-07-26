@@ -1,37 +1,13 @@
-import { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
-import { getAlbums, removeAlbums } from 'actions/albums';
+import { Component } from 'react';
 
-class Albums extends Component {
-	static propTypes = {
-		albums: PropTypes.object.isRequired,
-		getAlbums: PropTypes.func.isRequired,
-		removeAlbums: PropTypes.func.isRequired
-	}
-
-	componentWillMount() {
-		this.props.getAlbums();
-	}
-
-	componentWillUnmount() {
-		this.props.removeAlbums();
-	}
-
+export default class Albums extends Component {
 	render() {
-		const { data, isLoaded } = this.props.albums;
-
 		return (
 			<div>
-				This is the albums page!
-				<pre style={{whiteSpace: 'normal'}}>{isLoaded ? JSON.stringify(data) : 'Loading...'}</pre>
+				<h1>Albums Page</h1>
+
+				{this.props.children}
 			</div>
 		);
 	}
 }
-
-const mapStateToProps = ({ albums }) => ({albums});
-
-export default connect(mapStateToProps, {
-	getAlbums,
-	removeAlbums
-})(Albums);

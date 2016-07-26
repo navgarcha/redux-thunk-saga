@@ -1,14 +1,7 @@
 import { fetch } from 'api';
 
-export const POSTS_REQUEST = 'POSTS_REQUEST';
 export const POSTS_RECIEVE = 'POSTS_RECIEVE';
 export const POSTS_REMOVE = 'POSTS_REMOVE';
-
-function requestPosts() {
-	return {
-		type: POSTS_REQUEST
-	};
-}
 
 function receivePosts(payload) {
 	return {
@@ -17,10 +10,9 @@ function receivePosts(payload) {
 	};
 }
 
-export function getPosts() {
+export function requestPosts() {
 	return (dispatch) => {
-		dispatch(requestPosts());
-		return fetch('/posts').then((users) => dispatch(receivePosts(users)));
+		return fetch('/posts').then((posts) => dispatch(receivePosts(posts)));
 	};
 }
 
