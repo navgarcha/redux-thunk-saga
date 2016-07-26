@@ -13,7 +13,7 @@ export default class Photos extends Component {
 	}
 
 	componentWillUnmount() {
-		this.props.removePhotos(this.props.params.albumId);
+		this.props.cleanupPhotos(this.props.params.albumId);
 	}
 
 	render() {

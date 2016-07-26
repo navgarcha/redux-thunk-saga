@@ -1,6 +1,6 @@
 import { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
-import { requestPosts, removePosts } from 'actions/posts';
+import { requestPosts, cleanupPosts } from 'actions/posts';
 
 export default class Posts extends Component {
 	static propTypes = {
@@ -18,7 +18,7 @@ export default class Posts extends Component {
 	}
 
 	componentWillUnmount() {
-		// this.props.dispatch(removePosts());
+		// this.props.dispatch(cleanupPosts());
 	}
 
 	render() {

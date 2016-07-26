@@ -1,7 +1,7 @@
 import { fetch } from 'api';
 
 export const POSTS_RECIEVE = 'POSTS_RECIEVE';
-export const POSTS_REMOVE = 'POSTS_REMOVE';
+export const POSTS_CLEANUP = 'POSTS_CLEANUP';
 
 function receivePosts(payload) {
 	return {
@@ -16,8 +16,8 @@ export function requestPosts() {
 	};
 }
 
-export function removePosts() {
+export function cleanupPosts() {
 	return {
-		type: POSTS_REMOVE
+		type: POSTS_CLEANUP
 	};
 }

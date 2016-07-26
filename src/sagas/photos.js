@@ -1,7 +1,7 @@
 import { takeLatest } from 'redux-saga';
 import { take, race, call, put, select } from 'redux-saga/effects';
 import { fetch } from 'api';
-import { PHOTOS_REQUEST, PHOTOS_REMOVE, receivePhotos } from 'actions/photos';
+import { PHOTOS_REQUEST, PHOTOS_CLEANUP, receivePhotos } from 'actions/photos';
 import { photosSelector } from 'selectors';
 
 function* fetchPhotos({ id }) {
@@ -11,7 +11,7 @@ function* fetchPhotos({ id }) {
 		try {
 			const { photos, cancel } = yield race({
 				photos: call(fetch, `/photos?albumId=${id}`),
-				cancel: take(PHOTOS_REMOVE)
+				cancel: take(PHOTOS_CLEANUP)
 			});
 
 			if (photos) {

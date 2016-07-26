@@ -1,6 +1,6 @@
 export const PHOTOS_REQUEST = 'PHOTOS_REQUEST';
 export const PHOTOS_RECIEVE = 'PHOTOS_RECIEVE';
-export const PHOTOS_REMOVE = 'PHOTOS_REMOVE';
+export const PHOTOS_CLEANUP = 'PHOTOS_CLEANUP';
 
 export function requestPhotos(id) {
 	return {
@@ -17,9 +17,9 @@ export function receivePhotos(id, payload) {
 	};
 }
 
-export function removePhotos(id) {
+export function cleanupPhotos(id) {
 	return {
-		type: PHOTOS_REMOVE,
+		type: PHOTOS_CLEANUP,
 		id
 	};
 }

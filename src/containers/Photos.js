@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { requestPhotos, removePhotos } from 'actions/photos';
+import { requestPhotos, cleanupPhotos } from 'actions/photos';
 import { photosSelector } from 'selectors';
 import Photos from 'components/Photos';
 
@@ -9,5 +9,5 @@ const mapStateToProps = (state, ownProps) => ({
 
 export default connect(mapStateToProps, {
 	requestPhotos,
-	removePhotos
+	cleanupPhotos
 })(Photos);

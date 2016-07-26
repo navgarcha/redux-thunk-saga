@@ -1,4 +1,4 @@
-import { PHOTOS_RECIEVE, PHOTOS_REMOVE } from 'actions/photos';
+import { PHOTOS_RECIEVE, PHOTOS_CLEANUP } from 'actions/photos';
 
 export default (state = {}, action) => {
 	switch (action.type) {
@@ -8,7 +8,7 @@ export default (state = {}, action) => {
 				[action.id]: action.payload,
 			};
 
-		case PHOTOS_REMOVE:
+		case PHOTOS_CLEANUP:
 			const {[action.id]: omit, ...newState} = state;
 			return newState;
 
