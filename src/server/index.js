@@ -1,6 +1,6 @@
 import Glue from 'glue';
 import manifest from './manifest';
-import reactRender from './utils/reactRender';
+import renderReact from './utils/renderReact';
 
 Glue.compose(manifest, {
 	relativeTo: __dirname
@@ -24,7 +24,7 @@ Glue.compose(manifest, {
 		}
 
 		// Unmatched requests fallback to react router
-		reactRender(request, reply);
+		renderReact(request, reply);
 	});
 
 	server.start(() => console.log(`Server running at: ${server.info.uri}`));
