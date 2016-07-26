@@ -2,7 +2,7 @@ import webpack from 'webpack';
 import path from 'path';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import CleanWebpackPlugin from 'clean-webpack-plugin';
-import cmrhConfig from '../cmrh.conf';
+import { generateScopedName as localIdentName } from '../cmrh.conf';
 
 const buildFolder = 'build';
 const buildPath = path.resolve(__dirname, `../public/${buildFolder}`);
@@ -29,7 +29,7 @@ export default {
 		}, {
 			test: /\.css$/,
 			loader: ExtractTextPlugin.extract([
-				`css?sourceMap&modules&localIdentName=${cmrhConfig.generateScopedName}`
+				`css?sourceMap&modules&localIdentName=${localIdentName}`
 			])
 		}]
 	},
