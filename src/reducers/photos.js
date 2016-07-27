@@ -5,7 +5,7 @@ export default (state = {}, action) => {
 		case PHOTOS_RECIEVE:
 			return {
 				...state,
-				[action.id]: action.payload,
+				...action.payload
 			};
 
 		case PHOTOS_CLEANUP:

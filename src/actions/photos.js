@@ -5,15 +5,15 @@ export const PHOTOS_CLEANUP = 'PHOTOS_CLEANUP';
 export function requestPhotos(id) {
 	return {
 		type: PHOTOS_REQUEST,
-		id
+		uri: `/photos?albumId=${id}`,
+        id
 	};
 }
 
 export function receivePhotos(id, payload) {
 	return {
 		type: PHOTOS_RECIEVE,
-		id,
-		payload
+		payload: {[id]: payload}
 	};
 }
 

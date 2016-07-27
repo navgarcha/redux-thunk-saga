@@ -4,13 +4,13 @@ import { request } from 'api';
 import { PHOTOS_REQUEST, PHOTOS_CLEANUP, receivePhotos } from 'actions/photos';
 import { photosSelector } from 'selectors';
 
-function* requestPhotos({ id }) {
+function* requestPhotos({ id, uri }) {
 	const cachedPhotos = yield select(photosSelector, id);
 
 	if (!cachedPhotos) {
 		try {
 			const { photos, cancel } = yield race({
-				photos: call(request, `/photos?albumId=${id}`),
+				photos: call(request, uri),
 				cancel: take(PHOTOS_CLEANUP)
 			});
 

@@ -4,12 +4,12 @@ import { request } from 'api';
 import { ALBUMS_REQUEST, receiveAlbums } from 'actions/albums';
 import { albumsSelector } from 'selectors';
 
-function* requestAlbums() {
+function* requestAlbums({ uri }) {
 	const cachedAlbums = yield select(albumsSelector);
 
 	if (!cachedAlbums) {
 		try {
-			const albums = yield call(request, '/albums');
+			const albums = yield call(request, uri);
 			yield put(receiveAlbums(albums));
 		} catch (error) {
 			console.log('Albums request failed!');

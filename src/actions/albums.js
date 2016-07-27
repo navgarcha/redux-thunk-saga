@@ -3,7 +3,8 @@ export const ALBUMS_RECIEVE = 'ALBUMS_RECIEVE';
 
 export function requestAlbums() {
 	return {
-		type: ALBUMS_REQUEST
+		type: ALBUMS_REQUEST,
+        uri: '/albums'
 	};
 }
 
