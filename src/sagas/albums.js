@@ -14,8 +14,6 @@ function* requestAlbums() {
 		} catch (error) {
 			console.log('Albums request failed!');
 		}
-	} else {
-		console.log('Albums served from cache!');
 	}
 }
 
