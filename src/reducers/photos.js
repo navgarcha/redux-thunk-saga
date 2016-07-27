@@ -9,7 +9,7 @@ export default (state = {}, action) => {
 			};
 
 		case PHOTOS_CLEANUP:
-			const {[action.id]: omit, ...newState} = state;
+			const { [action.id]: omit, ...newState } = state;
 			return newState;
 
 		default:
