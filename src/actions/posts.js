@@ -12,7 +12,9 @@ function receivePosts(payload) {
 
 export function requestPosts() {
 	return (dispatch) => {
-		return request('/posts').then((posts) => dispatch(receivePosts(posts)));
+		return request('/posts')
+            .then((posts) => dispatch(receivePosts(posts)))
+            .catch(() => console.log('Posts request failed!'));
 	};
 }
 
