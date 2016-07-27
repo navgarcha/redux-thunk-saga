@@ -1,6 +1,6 @@
 import { request } from 'api';
 
-export const POSTS_RECIEVE = 'POSTS_RECIEVE';
+export const POSTS_RECEIVE = 'POSTS_RECEIVE';
 export const POSTS_CLEANUP = 'POSTS_CLEANUP';
 
 export function requestPosts() {
@@ -13,7 +13,7 @@ export function requestPosts() {
 
 function receivePosts(payload) {
 	return {
-		type: POSTS_RECIEVE,
+		type: POSTS_RECEIVE,
 		payload
 	};
 }

@@ -1,5 +1,5 @@
 export const ALBUMS_REQUEST = 'ALBUMS_REQUEST';
-export const ALBUMS_RECIEVE = 'ALBUMS_RECIEVE';
+export const ALBUMS_RECEIVE = 'ALBUMS_RECEIVE';
 
 export function requestAlbums() {
 	return {
@@ -10,7 +10,7 @@ export function requestAlbums() {
 
 export function receiveAlbums(payload) {
 	return {
-		type: ALBUMS_RECIEVE,
+		type: ALBUMS_RECEIVE,
 		payload
 	};
 }

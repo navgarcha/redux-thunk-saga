@@ -1,8 +1,8 @@
-import { ALBUMS_RECIEVE } from 'actions/albums';
+import { ALBUMS_RECEIVE } from 'actions/albums';
 
 export default (state = null, action) => {
 	switch (action.type) {
-		case ALBUMS_RECIEVE:
+		case ALBUMS_RECEIVE:
 			return action.payload;
 
 		default:
