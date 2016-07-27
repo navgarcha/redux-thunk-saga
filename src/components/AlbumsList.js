@@ -11,8 +11,6 @@ export default class AlbumsList extends Component {
 	}
 
 	render() {
-		const albums = this.props.albums;
-
 		return (
 			<div>
 				{this.props.albums ? this.props.albums.map(({ id, title }, index) =>
