@@ -9,11 +9,11 @@ export default class Photos extends Component {
 	}
 
 	componentWillMount() {
-		this.props.requestPhotos(this.props.params.albumId);
+		this.props.requestPhotos();
 	}
 
 	componentWillUnmount() {
-		this.props.cleanupPhotos(this.props.params.albumId);
+		this.props.cleanupPhotos();
 	}
 
 	render() {

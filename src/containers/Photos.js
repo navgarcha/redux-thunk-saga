@@ -3,11 +3,13 @@ import { requestPhotos, cleanupPhotos } from 'actions/photos';
 import { photosSelector } from 'selectors';
 import Photos from 'components/Photos';
 
-const mapStateToProps = (state, ownProps) => ({
-	photos: photosSelector(state, ownProps.params.albumId)
+const mapStateToProps = (state, { params: { albumId }}) => ({
+	photos: photosSelector(state, albumId)
 });
 
-export default connect(mapStateToProps, {
-	requestPhotos,
-	cleanupPhotos
-})(Photos);
+const mapDispatchToProps = (dispatch, { params: { albumId }}) => ({
+    requestPhotos: () => dispatch(requestPhotos(albumId)),
+    cleanupPhotos: () => dispatch(cleanupPhotos(albumId))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Photos);
